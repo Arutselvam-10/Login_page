@@ -3,43 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Admin Login</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 { color: #333; margin-bottom: 25px; }
+
+        .input-group { margin-bottom: 20px; text-align: left; }
+        
+        .input-group label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: #555;
+            font-size: 14px; 
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #edf2f7;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus { border-color: #2a5298; }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+        .login-btn:hover { background: #1e3c72; transform: translateY(-1px); }
+
+        /* Image Display Section */
+        #image-display { display: none; animation: fadeIn 0.5s ease; }
+        
+        #success-img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
     <div class="login-card">
-        <h2>Welcome Back</h2>
-        <p>Please enter your details to login</p>
+        <div id="login-section">
+            <h2>Admin Login</h2>
+            
+            <form id="loginForm" autocomplete="off">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="enter mail address" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="enter password" required>
+                </div>
+                <button type="submit" class="login-btn">Sign In</button>
+            </form>
+        </div>
 
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="e.g. priya@gmail.com" required>
-            </div>
-
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-            </div>
-
-            <div id="loginMessage">Successfully Logged In!</div>
-
-            <div class="actions">
-                <label class="remember-me">
-                    <input type="checkbox"> Remember me
-                </label>
-                <a href="#" class="forgot-pw">Forgot Password?</a>
-            </div>
-
-            <button type="submit" class="login-btn">Sign In</button>
-        </form>
-
-        <div class="footer-text">
-            New here? <a href="#">Create an account</a>
+        <div id="image-display">
+            <img id="success-img" 
+                 src="cng.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500'" 
+                 alt="Success Image">
+            <h3 style="color: #2a5298; margin-bottom: 10px;">Welcome Back!</h3>
+            <button onclick="location.reload()" class="login-btn" style="background: #e2e8f0; color: #4a5568; margin-top: 20px;">Logout</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+
+            // Hidden validation logic
+            if (email === "admin@gmail.com" && pass === "admin123") {
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('image-display').style.display = 'block';
+            } else {
+                alert("Incorrect login details.");
+            }
+        });
+    </script>
 </body>
 </html>

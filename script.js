@@ -1,18 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
-    const messageBox = document.getElementById('loginMessage');
+    const loginSection = document.getElementById('login-section');
+    const imageDisplay = document.getElementById('image-display');
 
     loginForm.addEventListener('submit', (e) => {
-        // 1. Prevent the page from refreshing
-        e.preventDefault(); 
+        e.preventDefault(); // Stop page refresh
 
-        // 2. Show the success message box
-        messageBox.style.display = 'block';
+        // 1. Hide the login form area
+        loginSection.style.display = 'none';
 
-        // 3. Clear the inputs after "login"
-        document.getElementById('email').value = '';
-        document.getElementById('password').value = '';
+        // 2. Show the image area
+        imageDisplay.style.display = 'block';
 
-        console.log("Form submitted successfully!");
+        console.log("Login sequence complete. Showing image.");
     });
 });
